@@ -1,0 +1,16 @@
+{
+    "name": "F481/minecraft-server-manager-frontend",
+    "description": "An awesome responsive web frontend for minecraft-server-manager",
+    "minimum-stability": "stable",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "F481",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+        "silex/silex": "~1.2",
+        "twbs/bootstrap": "~3.2.0"
+    }
+}
