@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ app.request.basepath }}/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="{{ app.request.basepath }}/css/main.css" />
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    {% endblock %}
+</head>
+
+<body>
+{% block body %}
+    <header>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">MSM-Frontend</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                    </ul>
+                </div><!-- navbar-collapse -->
+            </div><!-- container-fluid -->
+        </nav>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <section class="col-md-6 widget">
+                    {% include 'overview.twig' %}
+                </section>
+                <section class="col-md-6 widget">
+                    {% include 'console.twig' %}
+                </section>
+            </div>
+            <div class="row">
+                <section class="col-md-6 widget">
+                    {% include 'settings.twig' %}
+                </section>
+                <section class="col-md-6 widget">
+                    {% include 'options.twig' %}
+                </section>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+</body>
+</html>
