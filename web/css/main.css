@@ -9,20 +9,38 @@ body {
 }
 
 .widget header, .widget main {
-    background-color: #F4F4F4;
-    border: 1px solid #E1E1E8;
+    border: 1px solid #D3D3D3;
     border-radius: 2px;
 }
 
 .widget-header {
     height: 30px;
     line-height: 30px;
+    background-color: #E7E7E7;
     font-weight: bold;
-    padding: 0 10px;
+    padding: 0 15px;
+}
+
+.widget-header i {
+    line-height: 30px;
+    font-size: large;
 }
 
 .widget-main {
     height: 300px;
     border-top: 0px !important;
     padding: 10px;
+}
+
+.table-hover tbody tr:hover > td {
+    background-color: #E7E7E7;
+    cursor: pointer;
+}
+
+.float-right {
+    float: right;
+}
+
+.cursor-pointer:hover {
+    cursor: pointer;
 }
