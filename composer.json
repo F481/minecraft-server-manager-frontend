@@ -12,7 +12,6 @@
     "require": {
         "silex/silex": "~1.2",
         "twbs/bootstrap": "~3.2.0",
-        "mheap/Silex-Assetic": "~1.0",
         "twig/twig": "~1.0"
     }
 }
