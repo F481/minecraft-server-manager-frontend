@@ -26,13 +26,12 @@ $app->get('/', function() use ($app, $commander) {
 
 $app['overview'] = function() use ($commander) {
     $servers = array();
-    $serverNames = $commander->listServer();
 
-    foreach ($serverNames as $serverName) {
+    foreach ($commander->getServers() as $serverName) {
         $tempObj = new stdClass();
         $tempObj->name = $serverName;
         $tempObj->isRunning = $commander->isRunning($serverName);
-        // TODO players
+        $tempObj->players = $commander->getPlayers($serverName);
         array_push($servers, $tempObj);
     }
 

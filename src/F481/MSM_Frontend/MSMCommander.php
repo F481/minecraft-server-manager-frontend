@@ -19,9 +19,9 @@ class MSMCommander {
     /**
      * List servers
      *
-     * @return array of string containing all servers, otherwise null
+     * @return array|null array of strings containing all servers, otherwise null if no server exists
      */
-    public function listServer()
+    public function getServers()
     {
         $output = $this->msmCall(constant('server_list'));
         preg_match_all($this->regexGetQuotesValue, $output, $response);
@@ -117,7 +117,7 @@ class MSMCommander {
      * Show the running/stopped status of a server
      *
      * @param $_server Server to get status
-     * @return string
+     * @return boolean|null
      */
     public function isRunning($_server)
     {
@@ -132,8 +132,22 @@ class MSMCommander {
         return $isRunning;
     }
 
-    public function serverConnected($_server)
+    /**
+     * List a servers connected players
+     *
+     * @param $_server
+     * @return array|null array of string containing the players, otherwise null if no player is connected
+     */
+    public function getPlayers($_server)
     {
-        return $this->msmCall(str_replace('$server', $_server, constant('connected')));
+        $output = $this->msmCall(str_replace('$server', $_server, constant('connected')));
+
+        if (stripos($output, 'no') === false) {
+            foreach ($players = explode(',', $output) as $player) {
+                trim($player);
+            }
+        } else $players = null;
+
+        return $players;
     }
 }

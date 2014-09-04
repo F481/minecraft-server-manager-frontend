@@ -24,7 +24,13 @@
                                     Stopped
                                 {% endif %}
                             </td>
-                            <td>not implemented yet</td>
+                            <td>
+                                {% if server.players is not empty %}
+                                    {{ server.players | length }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
