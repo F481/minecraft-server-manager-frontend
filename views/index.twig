@@ -34,7 +34,7 @@
         <div class="container-fluid">
             <div class="row">
                 <section class="col-md-6 widget">
-                    {% include 'overview.twig' %}
+                    {% include 'overview.twig' ignore missing with {'servers': servers } %}
                 </section>
                 <section class="col-md-6 widget">
                     {% include 'console.twig' %}
