@@ -22,7 +22,8 @@ install:
     - php composer.phar install --dev
 
 before_script:
-    - su minecraft
+    - sudo su minecraft
     - msm update
+    - msm help
 
 script: phpunit
