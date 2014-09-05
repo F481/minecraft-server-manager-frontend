@@ -1,0 +1,25 @@
+language: php
+
+php:
+    - 5.3
+    - 5.4
+    - 5.5
+
+before_install:
+    - sudo apt-get update -qq
+    - sudo apt-get install -y screen rsync zip
+    - sudo wget http://git.io/6eiCSg -O /etc/msm.conf
+    - sudo mkdir /opt/msm
+    - sudo chown minecraft /opt/msm
+    - sudo chmod -R 775 /opt/msm
+    - sudo wget http://git.io/J1GAxA -O /etc/init.d/msm
+    - sudo chmod 755 /etc/init.d/msm
+    - sudo ln -s /etc/init.d/msm /usr/local/bin/msm
+    - sudo msm update
+    - sudo msm jargroup create minecraft https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar
+
+install:
+    - curl -s http://getcomposer.org/installer | php
+    - php composer.phar install --dev
+
+script: phpunit
