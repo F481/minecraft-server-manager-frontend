@@ -10,16 +10,19 @@ before_install:
     - sudo apt-get install -y screen rsync zip
     - sudo wget http://git.io/6eiCSg -O /etc/msm.conf
     - sudo mkdir /opt/msm
+    - sudo useradd minecraft --system --home /opt/msm
     - sudo chown minecraft /opt/msm
     - sudo chmod -R 775 /opt/msm
     - sudo wget http://git.io/J1GAxA -O /etc/init.d/msm
     - sudo chmod 755 /etc/init.d/msm
     - sudo ln -s /etc/init.d/msm /usr/local/bin/msm
-    - sudo msm update
-    - sudo msm jargroup create minecraft https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar
 
 install:
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar install --dev
+
+before_script:
+    - su minecraft
+    - msm update
 
 script: phpunit
