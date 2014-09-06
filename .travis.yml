@@ -22,7 +22,7 @@ install:
     - php composer.phar install --dev
 
 before_script:
-    - sudo su - minecraft -c 'msm update'
+    - sudo su - minecraft -c 'yes | msm update'
     - sudo su - minecraft -c 'msm help'
     - java -version
 
