@@ -7,10 +7,9 @@ php:
 
 before_install:
     - sudo apt-get update -qq
-    - sudo apt-get install -y screen rsync zip
+    - sudo apt-get install -y screen rsync zip openjdk-7-jre
     - sudo wget http://git.io/6eiCSg -O /etc/msm.conf
     - sudo mkdir /opt/msm
-    - sudo useradd minecraft --system --home /opt/msm
     - sudo chown minecraft /opt/msm
     - sudo chmod -R 775 /opt/msm
     - sudo wget http://git.io/J1GAxA -O /etc/init.d/msm
@@ -22,8 +21,7 @@ install:
     - php composer.phar install --dev
 
 before_script:
-    - sudo su minecraft
-    - msm update
+    - sudo msm update
     - msm help
 
 script: phpunit
