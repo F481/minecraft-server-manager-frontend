@@ -16,11 +16,23 @@ class MSMCommander {
         return shell_exec('sudo msm ' .$command);
     }
 
+    /**
+     * Checks if 'msm' command is available
+     *
+     * @return bool Either the msm command is available or not
+     */
     public function isMSMAvailable()
     {
         $output = shell_exec('msm');
 
-        return preg_match('/command not found/', $output) == 1 ? false : true;
+        if ($output != null) {
+            // if command is not found, the method returns false
+            $response = preg_match('/not found/i', $output) == 1 ? false : true;
+        } else {
+            $response = null;
+        }
+
+        return $response;
     }
 
     /**
