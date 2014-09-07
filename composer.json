@@ -16,7 +16,8 @@
     },
     "require-dev": {
         "symfony/browser-kit": "~2.3",
-        "symfony/css-selector": "~2.3"
+        "symfony/css-selector": "~2.3",
+        "phpunit/phpunit": "~4.2"
     },
     "autoload": {
         "psr-0": {
