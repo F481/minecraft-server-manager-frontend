@@ -136,6 +136,7 @@ class MSMCommander {
     /**
      * Show the running/stopped status of a server
      *
+     * @throws \RuntimeException if there is no server with the given name
      * @param $_server Server to get status
      * @return boolean|null
      */
@@ -159,6 +160,7 @@ class MSMCommander {
     /**
      * List a servers connected players
      *
+     * @throws \RuntimeException if there is no server with the given name
      * @param $_server
      * @return array|null array of string containing the players, otherwise null if no player is connected
      */
