@@ -20,7 +20,7 @@ class MSMCommander {
     {
         $output = shell_exec('msm');
 
-        return preg_match('/command not found/', $output) == 1 ? true : false;
+        return preg_match('/command not found/', $output) == 1 ? false : true;
     }
 
     /**
