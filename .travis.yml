@@ -15,14 +15,15 @@ before_install:
     - sudo chmod -R 775 /opt/msm
     - sudo wget http://git.io/J1GAxA -O /etc/init.d/msm
     - sudo chmod 755 /etc/init.d/msm
+    - sudo ln -s /etc/init.d/msm /usr/local/bin/msm
 
 install:
     - curl -s http://getcomposer.org/installer | php
     - php composer.phar install --dev
 
 before_script:
-    - sudo su - root -c 'yes | /etc/init.d/msm update'
-    - sudo su - minecraft -c '/etc/init.d/msm help'
+    - sudo su - root -c 'yes | msm update'
+    - sudo su - minecraft -c 'msm help'
     - java -version
 
 
