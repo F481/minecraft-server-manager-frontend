@@ -19,9 +19,8 @@ class MSMCommander {
     public function isMSMAvailable()
     {
         $output = shell_exec('msm');
-        preg_match('/command not found/', $output, $return);
 
-        return $return == 1 ? true : false;
+        return preg_match('/command not found/', $output) == 1 ? true : false;
     }
 
     /**
