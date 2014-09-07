@@ -9,6 +9,7 @@ class MSMCommander {
     // get the values betweeen " or ' (needed for e.g. server name parsing)
     // see http://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotation-marks
     private $regexGetQuotesValue = '/(["])(?:(?=(\\\?))\2.)*?\1/';
+    private $regexNoServer = '/no server/i';
 
 
     private function msmCall($command)
@@ -142,11 +143,15 @@ class MSMCommander {
     {
         $output = $this->msmCall(str_replace('$server', $_server, constant('status')));
 
+        if (preg_match($this->regexNoServer, $output) == 1 || $output == null) {
+            throw new \RuntimeException(sprintf('There is no server with the name "%s"', $_server));
+        }
+
         if (stripos($output, 'running') !== false) {
             $isRunning = true;
         } else if (stripos($output, 'stopped') !== false) {
             $isRunning = false;
-        } else $isRunning = null;
+        }
 
         return $isRunning;
     }
@@ -161,11 +166,17 @@ class MSMCommander {
     {
         $output = $this->msmCall(str_replace('$server', $_server, constant('connected')));
 
+        if (preg_match($this->regexNoServer, $output) == 1 || $output == null) {
+            throw new \RuntimeException(sprintf('There is no server with the name "%s"', $_server));
+        }
+
         if (stripos($output, 'no') === false) {
             foreach ($players = explode(',', $output) as $player) {
                 trim($player);
             }
-        } else $players = null;
+        } else {
+            $players = null;
+        }
 
         return $players;
     }
