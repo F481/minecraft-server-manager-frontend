@@ -59,7 +59,18 @@ class MSMCommander {
      */
     public function createServer($_name)
     {
-        return $this->msmCall(str_replace('$name', $_name, constant('server_create')));
+        $success = false;
+        $output = $this->msmCall(str_replace('$name', $_name, constant('server_create')));
+
+        if (preg_match('/already exists/i', $output) == 1 || $output == null) {
+            throw new \RuntimeException(sprintf('A server with name "%s" already exists', $_name));
+        }
+
+        if (preg_match('/creating server.*done/i', $output) == 1) {
+           $success = true;
+        }
+
+        return $success;
     }
 
     /**

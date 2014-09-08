@@ -3,7 +3,6 @@
 namespace F481\MSM_Frontend\Test;
 
 use F481\MSM_Frontend\MSMCommander;
-use Symfony\Component\Yaml\Exception\RuntimeException;
 
 
 class MSMCommanderTest extends \PHPUnit_Framework_TestCase {
@@ -45,6 +44,33 @@ class MSMCommanderTest extends \PHPUnit_Framework_TestCase {
     public function testGetPlayersWithNonExistingServer()
     {
         $this->commander->getPlayers('yzhxbj9531');
+    }
+
+    public function testCreateServer()
+    {
+        $this->assertFalse($this->commander->createServer('name with spaces'));
+
+        $this->assertTrue($this->commander->createServer('serverstart'));
+        $this->assertTrue($this->commander->createServer('CapitalLetters'));
+        $this->assertTrue($this->commander->createServer('0987654321'));
+        $this->assertTrue($this->commander->createServer('name-with-dashes'));
+        $this->assertTrue($this->commander->createServer('name_with_underscores'));
+        $this->assertTrue($this->commander->createServer('Combination-of_different1Things2'));
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage A server with name "Duplicate" already exists
+     */
+    public function testCreateServerDuplicate()
+    {
+        $this->assertTrue($this->commander->createServer('Duplicate'));
+        $this->commander->createServer('Duplicate');
+    }
+
+    public function testGetPlayers()
+    {
+        $this->markTestSkipped();
     }
 
 } 
