@@ -5,36 +5,38 @@
     </header>
     <main class="widget-main">
         {% if servers is not empty %}
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Server</th>
-                        <th>State</th>
-                        <th>Players</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for server in servers %}
+            <div class="table-scroll">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td>{{ server.name }}</td>
-                            <td>
-                                {% if server.isRunning %}
-                                    Running
-                                {% else %}
-                                    Stopped
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if server.players is not empty %}
-                                    {{ server.players | length }}
-                                {% else %}
-                                    0
-                                {% endif %}
-                            </td>
+                            <th>Server</th>
+                            <th>State</th>
+                            <th>Players</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {% for server in servers %}
+                            <tr>
+                                <td>{{ server.name }}</td>
+                                <td>
+                                    {% if server.isRunning %}
+                                        Running
+                                    {% else %}
+                                        Stopped
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if server.players is not empty %}
+                                        {{ server.players | length }}
+                                    {% else %}
+                                        0
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         {% else %}
             <p>There are no servers.</p>
         {% endif %}

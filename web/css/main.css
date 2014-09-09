@@ -44,3 +44,8 @@ body {
 .cursor-pointer:hover {
     cursor: pointer;
 }
+
+.table-scroll {
+    height: 100%;
+    overflow: auto;
+}
