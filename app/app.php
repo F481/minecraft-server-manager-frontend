@@ -3,6 +3,7 @@
 require_once __DIR__.'/../vendor/autoload.php';
 
 use F481\MSM_Frontend\MSMCommander;
+use Symfony\Component\HttpFoundation\Request;
 
 $app = new Silex\Application();
 $commander = new MSMCommander();
@@ -22,6 +23,22 @@ $app->get('/', function() use ($app, $commander) {
        'servers' => $servers,
     ));
 });
+
+$app->get('/msm/{func}', function($func, Request $request) use ($app, $commander) {
+    $name = $request->get('name');
+
+    if ($func != null) {
+        switch ($func) {
+            case 'create':
+                if ($name != null) {
+                    $response = $commander->createServer($name);
+                }
+                break;
+        }
+    }
+
+    return $response;
+})->value('func', null)->value('name', null);
 
 
 $app['overview'] = function() use ($commander) {
